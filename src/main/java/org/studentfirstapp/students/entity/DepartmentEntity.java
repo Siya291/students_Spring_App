@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 
 @Table(name = "Departments")
@@ -18,12 +17,13 @@ public class DepartmentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "department_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "department_name", nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
 
     @OneToMany(mappedBy = "department")

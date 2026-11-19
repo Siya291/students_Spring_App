@@ -22,30 +22,30 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentResponse> createStudent(@Valid @RequestBody StudentRequest request) {
-        StudentResponse response = studentService.createStudent(request);
+    public ResponseEntity<StudentResponse> create(@RequestBody StudentRequest request) {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(studentService.create(request));
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentResponse>> getAllStudents() {
-        return ResponseEntity.ok(studentService.getAllStudents());
+    public ResponseEntity<List<StudentResponse>> findAll() {
+
+        return ResponseEntity.ok(studentService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id) {
-        return ResponseEntity.ok(studentService.getStudentById(id));
+    public ResponseEntity<StudentResponse> findById(@PathVariable Long id) {
+
+        return ResponseEntity.ok(studentService.findById(id));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<StudentResponse> updateStudent(@PathVariable Long id, @Valid @RequestBody StudentRequest request) {
-        return ResponseEntity.ok(studentService.updateStudent(id, request));
-    }
+    @GetMapping("/department/{departmentId}")
+    public ResponseEntity<List<StudentResponse>> findByDepartment(@PathVariable Long departmentId) {
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudent(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(
+                studentService.findByDepartment(departmentId)
+        );
     }
 }

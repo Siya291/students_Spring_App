@@ -21,10 +21,6 @@ public record StudentRequest(
         String email,
 
         @NotNull(message = "Department ID is required")
-        Long departmentId,
-
-        @NotBlank(message = "Department Name is required")
-        @Size(max = 100, message = "Department Name must not exceed 100 characters")
-        String departmentName
+        Long departmentId
 ) {
 }
